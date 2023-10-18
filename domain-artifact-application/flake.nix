@@ -32,12 +32,12 @@
       inputs.pythoneda-shared-pythoneda-infrastructure.follows =
         "pythoneda-shared-pythoneda-infrastructure";
       url =
-        "github:pythoneda-shared-pythoneda/application-artifact/0.0.2?dir=application";
+        "github:pythoneda-shared-pythoneda/application-artifact/0.0.3?dir=application";
     };
     pythoneda-shared-pythoneda-banner = {
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixos.follows = "nixos";
-      url = "github:pythoneda-shared-pythoneda/banner/0.0.10";
+      url = "github:pythoneda-shared-pythoneda/banner/0.0.13";
     };
     pythoneda-shared-pythoneda-domain = {
       inputs.flake-utils.follows = "flake-utils";
@@ -57,7 +57,7 @@
       inputs.pythoneda-shared-pythoneda-domain.follows =
         "pythoneda-shared-pythoneda-domain";
       url =
-        "github:pythoneda-shared-pythoneda/domain-artifact-artifact/0.0.14?dir=domain-artifact";
+        "github:pythoneda-shared-pythoneda/domain-artifact-artifact/0.0.15?dir=domain-artifact";
     };
     pythoneda-shared-pythoneda-domain-artifact-infrastructure = {
       inputs.flake-utils.follows = "flake-utils";
@@ -85,7 +85,7 @@
       inputs.pythoneda-shared-pythoneda-domain.follows =
         "pythoneda-shared-pythoneda-domain";
       url =
-        "github:pythoneda-shared-pythoneda/infrastructure-artifact/0.0.2?dir=infrastructure";
+        "github:pythoneda-shared-pythoneda/infrastructure-artifact/0.0.3?dir=infrastructure";
     };
     INDIRECT-pythoneda-shared-artifact-changes-events-infrastructure = {
       inputs.flake-utils.follows = "flake-utils";
@@ -195,8 +195,8 @@
       let
         org = "pythoneda-shared-pythoneda";
         repo = "domain-artifact-application";
-        version = "0.0.3";
-        sha256 = "sha256-g9bDMI4LfOyaIEPVvrkH8BZm2kH15HOUSo4QtG4gAQo=";
+        version = "0.0.4";
+        sha256 = "sha256-/SiHPvtFzOOMPDLkxkgGBuvzVNGY+E9R5x2P0T8oWU0=";
         pname = "${org}-${repo}";
         pythonpackage = "pythoneda.artifact.application";
         package = builtins.replaceStrings [ "." ] [ "/" ] pythonpackage;
