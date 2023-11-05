@@ -64,8 +64,6 @@
       inputs.nixos.follows = "nixos";
       inputs.INDIRECT-pythoneda-shared-artifact-changes-events.follows =
         "INDIRECT-INDIRECT-pythoneda-shared-artifact-changes-events";
-      inputs.pythoneda-shared-artifact-changes-events-infrastructure.follows =
-        "INDIRECT-pythoneda-shared-artifact-changes-events-infrastructure";
       inputs.pythoneda-shared-pythoneda-banner.follows =
         "pythoneda-shared-pythoneda-banner";
       inputs.pythoneda-shared-pythoneda-domain.follows =
@@ -75,7 +73,7 @@
       inputs.pythoneda-shared-pythoneda-infrastructure.follows =
         "pythoneda-shared-pythoneda-infrastructure";
       url =
-        "github:pythoneda-shared-pythoneda/domain-artifact-infrastructure-artifact/0.0.13?dir=domain-artifact-infrastructure";
+        "github:pythoneda-shared-pythoneda/domain-artifact-infrastructure-artifact/0.0.15?dir=domain-artifact-infrastructure";
     };
     pythoneda-shared-pythoneda-infrastructure = {
       inputs.flake-utils.follows = "flake-utils";
@@ -195,8 +193,8 @@
       let
         org = "pythoneda-shared-pythoneda";
         repo = "domain-artifact-application";
-        version = "0.0.4";
-        sha256 = "sha256-/SiHPvtFzOOMPDLkxkgGBuvzVNGY+E9R5x2P0T8oWU0=";
+        version = "0.0.5";
+        sha256 = "1zfbbwhq6y753s8gj9fvknqcfrrlpflbnx6jxy2k10241bw5k73f";
         pname = "${org}-${repo}";
         pythonpackage = "pythoneda.artifact.application";
         package = builtins.replaceStrings [ "." ] [ "/" ] pythonpackage;
