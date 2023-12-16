@@ -29,7 +29,7 @@
         "pythoneda-shared-pythoneda-banner";
       inputs.pythoneda-shared-pythoneda-domain.follows =
         "pythoneda-shared-pythoneda-domain";
-      url = "github:pythoneda-shared-artifact-def/application/0.0.14";
+      url = "github:pythoneda-shared-artifact-def/application/0.0.15";
     };
     pythoneda-shared-pythoneda-application = {
       inputs.flake-utils.follows = "flake-utils";
@@ -38,7 +38,7 @@
         "pythoneda-shared-pythoneda-banner";
       inputs.pythoneda-shared-pythoneda-domain.follows =
         "pythoneda-shared-pythoneda-domain";
-      url = "github:pythoneda-shared-pythoneda-def/application/0.0.27";
+      url = "github:pythoneda-shared-pythoneda-def/application/0.0.28";
     };
     pythoneda-shared-pythoneda-artifact-domain = {
       inputs.flake-utils.follows = "flake-utils";
@@ -47,7 +47,7 @@
         "pythoneda-shared-pythoneda-banner";
       inputs.pythoneda-shared-pythoneda-domain.follows =
         "pythoneda-shared-pythoneda-domain";
-      url = "github:pythoneda-shared-pythoneda-artifact-def/domain/0.0.32";
+      url = "github:pythoneda-shared-pythoneda-artifact-def/domain/0.0.33";
     };
     pythoneda-shared-pythoneda-artifact-domain-infrastructure = {
       inputs.flake-utils.follows = "flake-utils";
@@ -57,7 +57,7 @@
       inputs.pythoneda-shared-pythoneda-domain.follows =
         "pythoneda-shared-pythoneda-domain";
       url =
-        "github:pythoneda-shared-pythoneda-artifact-def/domain-infrastructure/0.0.29";
+        "github:pythoneda-shared-pythoneda-artifact-def/domain-infrastructure/0.0.30";
     };
     pythoneda-shared-pythoneda-banner = {
       inputs.flake-utils.follows = "flake-utils";
@@ -87,8 +87,8 @@
       let
         org = "pythoneda-shared-pythoneda-artifact";
         repo = "domain-application";
-        version = "0.0.7";
-        sha256 = "04v169nd8d78qsaals5ilc32y5b1xnzdg456md5bililgfzn3aqw";
+        version = "0.0.8";
+        sha256 = "11hvixnzh44sjwc84vkw4j77havi2v7f53dmmgjjxvd0h02z5n1y";
         pname = "${org}-${repo}";
         pythonpackage = "pythoneda.artifact.application";
         package = builtins.replaceStrings [ "." ] [ "/" ] pythonpackage;
