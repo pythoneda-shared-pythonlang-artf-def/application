@@ -57,7 +57,7 @@
       inputs.pythoneda-shared-pythoneda-domain.follows =
         "pythoneda-shared-pythoneda-domain";
       url =
-        "github:pythoneda-shared-pythoneda-artifact-def/domain-infrastructure/0.0.32";
+        "github:pythoneda-shared-pythoneda-artifact-def/domain-infrastructure/0.0.33";
     };
     pythoneda-shared-pythoneda-banner = {
       inputs.flake-utils.follows = "flake-utils";
