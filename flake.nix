@@ -33,14 +33,14 @@
       inputs.nixos.follows = "nixos";
       inputs.pythoneda-shared-banner.follows = "pythoneda-shared-banner";
       inputs.pythoneda-shared-domain.follows = "pythoneda-shared-domain";
-      url = "github:pythoneda-shared-artifact-def/application/0.0.37";
+      url = "github:pythoneda-shared-artifact-def/application/0.0.38";
     };
     pythoneda-shared-application = {
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixos.follows = "nixos";
       inputs.pythoneda-shared-banner.follows = "pythoneda-shared-banner";
       inputs.pythoneda-shared-domain.follows = "pythoneda-shared-domain";
-      url = "github:pythoneda-shared-def/application/0.0.53";
+      url = "github:pythoneda-shared-def/application/0.0.54";
     };
     pythoneda-artifact-shared-domain = {
       inputs.flake-utils.follows = "flake-utils";
