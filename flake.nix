@@ -1,8 +1,8 @@
 # flake.nix
 #
-# This file packages pythoneda-shared-artifact/domain-application as a Nix flake.
+# This file packages pythoneda-shared-pythonlang-artf/domain-application as a Nix flake.
 #
-# Copyright (C) 2023-today rydnr's pythoneda-shared-artifact-def/domain-application
+# Copyright (C) 2023-today rydnr's pythoneda-shared-pythonlang-artf-def/domain-application
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,28 +17,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 {
-  description = "Application layer for pythoneda-shared-artifact/domain";
+  description = "Nix flake for pythoneda-shared-pythonlang-artf/domain-application";
   inputs = rec {
     flake-utils.url = "github:numtide/flake-utils/v1.0.0";
     nixos.url = "github:NixOS/nixpkgs/24.05";
-    pythoneda-artifact-shared-domain = {
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.nixos.follows = "nixos";
-      inputs.pythoneda-shared-pythonlang-banner.follows =
-        "pythoneda-shared-pythonlang-banner";
-      inputs.pythoneda-shared-pythonlang-domain.follows =
-        "pythoneda-shared-pythonlang-domain";
-      url = "github:pythoneda-artifact-def/shared-domain/0.0.46";
-    };
-    pythoneda-artifact-shared-domain-infrastructure = {
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.nixos.follows = "nixos";
-      inputs.pythoneda-shared-pythonlang-banner.follows =
-        "pythoneda-shared-pythonlang-banner";
-      inputs.pythoneda-shared-pythonlang-domain.follows =
-        "pythoneda-shared-pythonlang-domain";
-      url = "github:pythoneda-artifact-def/shared-domain-infrastructure/0.0.45";
-    };
     pythoneda-shared-artifact-application = {
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixos.follows = "nixos";
@@ -62,6 +44,24 @@
       inputs.nixos.follows = "nixos";
       url = "github:pythoneda-shared-pythonlang-def/banner/0.0.62";
     };
+    pythoneda-shared-pythonlang-artf-domain = {
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixos.follows = "nixos";
+      inputs.pythoneda-shared-pythonlang-banner.follows =
+        "pythoneda-shared-pythonlang-banner";
+      inputs.pythoneda-shared-pythonlang-domain.follows =
+        "pythoneda-shared-pythonlang-domain";
+      url = "github:pythoneda-shared-pythonlang-artf-def/domain/0.0.50";
+    };
+    pythoneda-shared-pythonlang-artf-domain-infrastructure = {
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixos.follows = "nixos";
+      inputs.pythoneda-shared-pythonlang-banner.follows =
+        "pythoneda-shared-pythonlang-banner";
+      inputs.pythoneda-shared-pythonlang-domain.follows =
+        "pythoneda-shared-pythonlang-domain";
+      url = "github:pythoneda-shared-pythonlang-artf-def/domain-infrastructure/0.0.45";
+    };
     pythoneda-shared-pythonlang-domain = {
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixos.follows = "nixos";
@@ -74,8 +74,8 @@
     with inputs;
     flake-utils.lib.eachDefaultSystem (system:
       let
-        org = "pythoneda-artifact";
-        repo = "shared-domain-application";
+        org = "pythoneda-shared-pythonlang-artf";
+        repo = "domain-application";
         version = "0.0.12";
         sha256 = "0p5ybmy7dvqkxgfyskb7qil3yf2ngbvmjc0mr3zw7v1yz03zbwfc";
         pname = "${org}-${repo}";
@@ -95,10 +95,10 @@
           builtins.replaceStrings [ "\n" ] [ "" ] "nixos-${nixosVersion}";
         shared = import "${pythoneda-shared-pythonlang-banner}/nix/shared.nix";
         pkgs = import nixos { inherit system; };
-        pythoneda-artifact-shared-domain-application-for = { python
+        pythoneda-shared-pythonlang-artf-domain-application-for = { python
           , pythoneda-shared-artifact-application
-          , pythoneda-artifact-shared-domain
-          , pythoneda-artifact-shared-domain-infrastructure
+          , pythoneda-shared-pythonlang-artf-domain
+          , pythoneda-shared-pythonlang-artf-domain-infrastructure
           , pythoneda-shared-pythonlang-application
           , pythoneda-shared-pythonlang-banner
           , pythoneda-shared-pythonlang-domain }:
@@ -123,14 +123,14 @@
               desc = description;
               inherit homepage package pname pythonMajorMinorVersion
                 pythonpackage version;
-              pythonedaArtifactSharedDomain =
-                pythoneda-artifact-shared-domain.version;
-              pythonedaArtifactSharedDomainInfrastructure =
-                pythoneda-artifact-shared-domain-infrastructure.version;
               pythonedaSharedArtifactApplication =
                 pythoneda-shared-artifact-application.version;
               pythonedaSharedPythonlangApplication =
                 pythoneda-shared-pythonlang-application.version;
+              pythonedaSharedPythonlangArtfDomain =
+                pythoneda-shared-pythonlang-artf-domain.version;
+              pythonedaSharedPythonlangArtfDomainInfrastructure =
+                pythoneda-shared-pythonlang-artf-domain-infrastructure.version;
               pythonedaSharedPythonlangBanner =
                 pythoneda-shared-pythonlang-banner.version;
               pythonedaSharedPythonlangDomain =
@@ -175,8 +175,8 @@
 
             nativeBuildInputs = with python.pkgs; [ pip poetry-core ];
             propagatedBuildInputs = with python.pkgs; [
-              pythoneda-artifact-shared-domain
-              pythoneda-artifact-shared-domain-infrastructure
+              pythoneda-shared-pythonlang-artf-domain
+              pythoneda-shared-pythonlang-artf-domain-infrastructure
               pythoneda-shared-pythonlang-application
               pythoneda-shared-artifact-application
               pythoneda-shared-pythonlang-banner
@@ -227,47 +227,47 @@
           };
       in rec {
         apps = rec {
-          default = pythoneda-artifact-shared-domain-application-default;
-          pythoneda-artifact-shared-domain-application-default =
-            pythoneda-artifact-shared-domain-application-python312;
-          pythoneda-artifact-shared-domain-application-python38 =
+          default = pythoneda-shared-pythonlang-artf-domain-application-default;
+          pythoneda-shared-pythonlang-artf-domain-application-default =
+            pythoneda-shared-pythonlang-artf-domain-application-python312;
+          pythoneda-shared-pythonlang-artf-domain-application-python38 =
             shared.app-for {
               package =
-                self.packages.${system}.pythoneda-artifact-shared-domain-application-python38;
+                self.packages.${system}.pythoneda-shared-pythonlang-artf-domain-application-python38;
               inherit entrypoint;
             };
-          pythoneda-artifact-shared-domain-application-python39 =
+          pythoneda-shared-pythonlang-artf-domain-application-python39 =
             shared.app-for {
               package =
-                self.packages.${system}.pythoneda-artifact-shared-domain-application-python39;
+                self.packages.${system}.pythoneda-shared-pythonlang-artf-domain-application-python39;
               inherit entrypoint;
             };
-          pythoneda-artifact-shared-domain-application-python310 =
+          pythoneda-shared-pythonlang-artf-domain-application-python310 =
             shared.app-for {
               package =
-                self.packages.${system}.pythoneda-artifact-shared-domain-application-python310;
+                self.packages.${system}.pythoneda-shared-pythonlang-artf-domain-application-python310;
               inherit entrypoint;
             };
-          pythoneda-artifact-shared-domain-application-python311 =
+          pythoneda-shared-pythonlang-artf-domain-application-python311 =
             shared.app-for {
               package =
-                self.packages.${system}.pythoneda-artifact-shared-domain-application-python311;
+                self.packages.${system}.pythoneda-shared-pythonlang-artf-domain-application-python311;
               inherit entrypoint;
             };
-          pythoneda-artifact-shared-domain-application-python312 =
+          pythoneda-shared-pythonlang-artf-domain-application-python312 =
             shared.app-for {
               package =
-                self.packages.${system}.pythoneda-artifact-shared-domain-application-python312;
+                self.packages.${system}.pythoneda-shared-pythonlang-artf-domain-application-python312;
               inherit entrypoint;
             };
         };
         defaultApp = apps.default;
         defaultPackage = packages.default;
         devShells = rec {
-          default = pythoneda-artifact-shared-domain-application-default;
-          pythoneda-artifact-shared-domain-application-default =
-            pythoneda-artifact-shared-domain-application-python312;
-          pythoneda-artifact-shared-domain-application-python38 =
+          default = pythoneda-shared-pythonlang-artf-domain-application-default;
+          pythoneda-shared-pythonlang-artf-domain-application-default =
+            pythoneda-shared-pythonlang-artf-domain-application-python312;
+          pythoneda-shared-pythonlang-artf-domain-application-python38 =
             shared.devShell-for {
               banner = "${
                   pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python38
@@ -275,7 +275,7 @@
               extra-namespaces = "";
               nixpkgs-release = nixpkgsRelease;
               package =
-                packages.pythoneda-artifact-shared-domain-application-python38;
+                packages.pythoneda-shared-pythonlang-artf-domain-application-python38;
               python = pkgs.python38;
               pythoneda-shared-pythonlang-domain =
                 pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python38;
@@ -283,7 +283,7 @@
                 pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python38;
               inherit archRole layer org pkgs repo space;
             };
-          pythoneda-artifact-shared-domain-application-python39 =
+          pythoneda-shared-pythonlang-artf-domain-application-python39 =
             shared.devShell-for {
               banner = "${
                   pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python39
@@ -291,7 +291,7 @@
               extra-namespaces = "";
               nixpkgs-release = nixpkgsRelease;
               package =
-                packages.pythoneda-artifact-shared-domain-application-python39;
+                packages.pythoneda-shared-pythonlang-artf-domain-application-python39;
               python = pkgs.python39;
               pythoneda-shared-pythonlang-domain =
                 pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python39;
@@ -299,7 +299,7 @@
                 pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python39;
               inherit archRole layer org pkgs repo space;
             };
-          pythoneda-artifact-shared-domain-application-python310 =
+          pythoneda-shared-pythonlang-artf-domain-application-python310 =
             shared.devShell-for {
               banner = "${
                   pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python310
@@ -307,7 +307,7 @@
               extra-namespaces = "";
               nixpkgs-release = nixpkgsRelease;
               package =
-                packages.pythoneda-artifact-shared-domain-application-python310;
+                packages.pythoneda-shared-pythonlang-artf-domain-application-python310;
               python = pkgs.python310;
               pythoneda-shared-pythonlang-domain =
                 pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python310;
@@ -315,7 +315,7 @@
                 pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python310;
               inherit archRole layer org pkgs repo space;
             };
-          pythoneda-artifact-shared-domain-application-python311 =
+          pythoneda-shared-pythonlang-artf-domain-application-python311 =
             shared.devShell-for {
               banner = "${
                   pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python311
@@ -323,7 +323,7 @@
               extra-namespaces = "";
               nixpkgs-release = nixpkgsRelease;
               package =
-                packages.pythoneda-artifact-shared-domain-application-python311;
+                packages.pythoneda-shared-pythonlang-artf-domain-application-python311;
               python = pkgs.python311;
               pythoneda-shared-pythonlang-domain =
                 pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python311;
@@ -331,7 +331,7 @@
                 pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python311;
               inherit archRole layer org pkgs repo space;
             };
-          pythoneda-artifact-shared-domain-application-python312 =
+          pythoneda-shared-pythonlang-artf-domain-application-python312 =
             shared.devShell-for {
               banner = "${
                   pythoneda-shared-pythonlang-banner.packages.${system}.pythoneda-shared-pythonlang-banner-python312
@@ -339,7 +339,7 @@
               extra-namespaces = "";
               nixpkgs-release = nixpkgsRelease;
               package =
-                packages.pythoneda-artifact-shared-domain-application-python312;
+                packages.pythoneda-shared-pythonlang-artf-domain-application-python312;
               python = pkgs.python312;
               pythoneda-shared-pythonlang-domain =
                 pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python312;
@@ -349,16 +349,16 @@
             };
         };
         packages = rec {
-          default = pythoneda-artifact-shared-domain-application-default;
-          pythoneda-artifact-shared-domain-application-default =
-            pythoneda-artifact-shared-domain-application-python312;
-          pythoneda-artifact-shared-domain-application-python38 =
-            pythoneda-artifact-shared-domain-application-for {
+          default = pythoneda-shared-pythonlang-artf-domain-application-default;
+          pythoneda-shared-pythonlang-artf-domain-application-default =
+            pythoneda-shared-pythonlang-artf-domain-application-python312;
+          pythoneda-shared-pythonlang-artf-domain-application-python38 =
+            pythoneda-shared-pythonlang-artf-domain-application-for {
               python = pkgs.python38;
-              pythoneda-artifact-shared-domain =
-                pythoneda-artifact-shared-domain.packages.${system}.pythoneda-artifact-shared-domain-python38;
-              pythoneda-artifact-shared-domain-infrastructure =
-                pythoneda-artifact-shared-domain-infrastructure.packages.${system}.pythoneda-artifact-shared-domain-infrastructure-python38;
+              pythoneda-shared-pythonlang-artf-domain =
+                pythoneda-shared-pythonlang-artf-domain.packages.${system}.pythoneda-shared-pythonlang-artf-domain-python38;
+              pythoneda-shared-pythonlang-artf-domain-infrastructure =
+                pythoneda-shared-pythonlang-artf-domain-infrastructure.packages.${system}.pythoneda-shared-pythonlang-artf-domain-infrastructure-python38;
               pythoneda-shared-artifact-application =
                 pythoneda-shared-artifact-application.packages.${system}.pythoneda-shared-artifact-application-python38;
               pythoneda-shared-pythonlang-application =
@@ -368,13 +368,13 @@
               pythoneda-shared-pythonlang-domain =
                 pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python38;
             };
-          pythoneda-artifact-shared-domain-application-python39 =
-            pythoneda-artifact-shared-domain-application-for {
+          pythoneda-shared-pythonlang-artf-domain-application-python39 =
+            pythoneda-shared-pythonlang-artf-domain-application-for {
               python = pkgs.python39;
-              pythoneda-artifact-shared-domain =
-                pythoneda-artifact-shared-domain.packages.${system}.pythoneda-artifact-shared-domain-python39;
-              pythoneda-artifact-shared-domain-infrastructure =
-                pythoneda-artifact-shared-domain-infrastructure.packages.${system}.pythoneda-artifact-shared-domain-infrastructure-python39;
+              pythoneda-shared-pythonlang-artf-domain =
+                pythoneda-shared-pythonlang-artf-domain.packages.${system}.pythoneda-shared-pythonlang-artf-domain-python39;
+              pythoneda-shared-pythonlang-artf-domain-infrastructure =
+                pythoneda-shared-pythonlang-artf-domain-infrastructure.packages.${system}.pythoneda-shared-pythonlang-artf-domain-infrastructure-python39;
               pythoneda-shared-artifact-application =
                 pythoneda-shared-artifact-application.packages.${system}.pythoneda-shared-artifact-application-python39;
               pythoneda-shared-pythonlang-application =
@@ -384,13 +384,13 @@
               pythoneda-shared-pythonlang-domain =
                 pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python39;
             };
-          pythoneda-artifact-shared-domain-application-python310 =
-            pythoneda-artifact-shared-domain-application-for {
+          pythoneda-shared-pythonlang-artf-domain-application-python310 =
+            pythoneda-shared-pythonlang-artf-domain-application-for {
               python = pkgs.python310;
-              pythoneda-artifact-shared-domain-infrastructure =
-                pythoneda-artifact-shared-domain-infrastructure.packages.${system}.pythoneda-artifact-shared-domain-infrastructure-python310;
-              pythoneda-artifact-shared-domain =
-                pythoneda-artifact-shared-domain.packages.${system}.pythoneda-artifact-shared-domain-python310;
+              pythoneda-shared-pythonlang-artf-domain-infrastructure =
+                pythoneda-shared-pythonlang-artf-domain-infrastructure.packages.${system}.pythoneda-shared-pythonlang-artf-domain-infrastructure-python310;
+              pythoneda-shared-pythonlang-artf-domain =
+                pythoneda-shared-pythonlang-artf-domain.packages.${system}.pythoneda-shared-pythonlang-artf-domain-python310;
               pythoneda-shared-artifact-application =
                 pythoneda-shared-artifact-application.packages.${system}.pythoneda-shared-artifact-application-python310;
               pythoneda-shared-pythonlang-application =
@@ -400,13 +400,13 @@
               pythoneda-shared-pythonlang-domain =
                 pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python310;
             };
-          pythoneda-artifact-shared-domain-application-python311 =
-            pythoneda-artifact-shared-domain-application-for {
+          pythoneda-shared-pythonlang-artf-domain-application-python311 =
+            pythoneda-shared-pythonlang-artf-domain-application-for {
               python = pkgs.python311;
-              pythoneda-artifact-shared-domain-infrastructure =
-                pythoneda-artifact-shared-domain-infrastructure.packages.${system}.pythoneda-artifact-shared-domain-infrastructure-python311;
-              pythoneda-artifact-shared-domain =
-                pythoneda-artifact-shared-domain.packages.${system}.pythoneda-artifact-shared-domain-python311;
+              pythoneda-shared-pythonlang-artf-domain-infrastructure =
+                pythoneda-shared-pythonlang-artf-domain-infrastructure.packages.${system}.pythoneda-shared-pythonlang-artf-domain-infrastructure-python311;
+              pythoneda-shared-pythonlang-artf-domain =
+                pythoneda-shared-pythonlang-artf-domain.packages.${system}.pythoneda-shared-pythonlang-artf-domain-python311;
               pythoneda-shared-artifact-application =
                 pythoneda-shared-artifact-application.packages.${system}.pythoneda-shared-artifact-application-python311;
               pythoneda-shared-pythonlang-application =
@@ -416,13 +416,13 @@
               pythoneda-shared-pythonlang-domain =
                 pythoneda-shared-pythonlang-domain.packages.${system}.pythoneda-shared-pythonlang-domain-python311;
             };
-          pythoneda-artifact-shared-domain-application-python312 =
-            pythoneda-artifact-shared-domain-application-for {
+          pythoneda-shared-pythonlang-artf-domain-application-python312 =
+            pythoneda-shared-pythonlang-artf-domain-application-for {
               python = pkgs.python312;
-              pythoneda-artifact-shared-domain-infrastructure =
-                pythoneda-artifact-shared-domain-infrastructure.packages.${system}.pythoneda-artifact-shared-domain-infrastructure-python312;
-              pythoneda-artifact-shared-domain =
-                pythoneda-artifact-shared-domain.packages.${system}.pythoneda-artifact-shared-domain-python312;
+              pythoneda-shared-pythonlang-artf-domain-infrastructure =
+                pythoneda-shared-pythonlang-artf-domain-infrastructure.packages.${system}.pythoneda-shared-pythonlang-artf-domain-infrastructure-python312;
+              pythoneda-shared-pythonlang-artf-domain =
+                pythoneda-shared-pythonlang-artf-domain.packages.${system}.pythoneda-shared-pythonlang-artf-domain-python312;
               pythoneda-shared-artifact-application =
                 pythoneda-shared-artifact-application.packages.${system}.pythoneda-shared-artifact-application-python312;
               pythoneda-shared-pythonlang-application =
