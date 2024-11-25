@@ -51,7 +51,7 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:pythoneda-shared-pythonlang-artf-def/domain/0.0.57";
+      url = "github:pythoneda-shared-pythonlang-artf-def/domain/0.0.59";
     };
     pythoneda-shared-pythonlang-artf-infrastructure = {
       inputs.flake-utils.follows = "flake-utils";
@@ -60,7 +60,7 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:pythoneda-shared-pythonlang-artf-def/infrastructure/0.0.49";
+      url = "github:pythoneda-shared-pythonlang-artf-def/infrastructure/0.0.50";
     };
     pythoneda-shared-pythonlang-domain = {
       inputs.flake-utils.follows = "flake-utils";
@@ -76,10 +76,10 @@
       let
         org = "pythoneda-shared-pythonlang-artf";
         repo = "application";
-        version = "0.0.12";
-        sha256 = "0p5ybmy7dvqkxgfyskb7qil3yf2ngbvmjc0mr3zw7v1yz03zbwfc";
+        version = "0.0.13";
+        sha256 = "1c3a70wzn8c33sbm36yxnbvnx8l1prwzyckr9zxzcxwa4bg4svqx";
         pname = "${org}-${repo}";
-        pythonpackage = "pythoneda.artifact.shared.domain.application";
+        pythonpackage = "pythoneda.artifact.shared.application";
         package = builtins.replaceStrings [ "." ] [ "/" ] pythonpackage;
         entrypoint = "artifact_app";
         description = "Application layer for pythoneda-artifact/shared-domain";
