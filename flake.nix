@@ -42,7 +42,7 @@
     pythoneda-shared-pythonlang-banner = {
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixos.follows = "nixos";
-      url = "github:pythoneda-shared-pythonlang-def/banner/0.0.70";
+      url = "github:pythoneda-shared-pythonlang-def/banner/0.0.71";
     };
     pythoneda-shared-pythonlang-artf-domain = {
       inputs.flake-utils.follows = "flake-utils";
@@ -60,14 +60,14 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:pythoneda-shared-pythonlang-artf-def/infrastructure/0.0.59";
+      url = "github:pythoneda-shared-pythonlang-artf-def/infrastructure/0.0.61";
     };
     pythoneda-shared-pythonlang-domain = {
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixos.follows = "nixos";
       inputs.pythoneda-shared-pythonlang-banner.follows =
         "pythoneda-shared-pythonlang-banner";
-      url = "github:pythoneda-shared-pythonlang-def/domain/0.0.89";
+      url = "github:pythoneda-shared-pythonlang-def/domain/0.0.90";
     };
   };
   outputs = inputs:
