@@ -60,7 +60,7 @@
         "pythoneda-shared-pythonlang-banner";
       inputs.pythoneda-shared-pythonlang-domain.follows =
         "pythoneda-shared-pythonlang-domain";
-      url = "github:pythoneda-shared-pythonlang-artf-def/infrastructure/0.0.81";
+      url = "github:pythoneda-shared-pythonlang-artf-def/infrastructure/0.0.82";
     };
     pythoneda-shared-pythonlang-domain = {
       inputs.flake-utils.follows = "flake-utils";
